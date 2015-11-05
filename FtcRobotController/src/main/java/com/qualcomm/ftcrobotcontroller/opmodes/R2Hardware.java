@@ -20,6 +20,11 @@ public class R2Hardware extends OpMode
     private DcMotor motorDriveLeft;
     private DcMotor motorDriveRight;
 
+    private DcMotor motorString;
+    private DcMotor motorLift;
+    private DcMotor motorPull;
+    private DcMotor motor2Drive;
+
 
     public R2Hardware()
     {
@@ -53,6 +58,54 @@ public class R2Hardware extends OpMode
             warnings.add("Failed to map 'driveRight'");
             DbgLog.msg(e.getLocalizedMessage());
             motorDriveRight = null;
+        }
+
+        try
+        {
+            motorString = hardwareMap.dcMotor.get("string");
+
+        }
+        catch(Exception e)
+        {
+            warnings.add("Failed to map 'string'");
+            DbgLog.msg(e.getLocalizedMessage());
+            motorString = null;
+        }
+
+        try
+        {
+            motorLift = hardwareMap.dcMotor.get("lift");
+
+        }
+        catch(Exception e)
+        {
+            warnings.add("Failed to map 'lift'");
+            DbgLog.msg(e.getLocalizedMessage());
+            motorLift = null;
+        }
+
+        try
+        {
+            motorPull = hardwareMap.dcMotor.get("pull");
+
+        }
+        catch(Exception e)
+        {
+            warnings.add("Failed to map 'pull'");
+            DbgLog.msg(e.getLocalizedMessage());
+            motorPull = null;
+        }
+
+        try
+        {
+            motor2Drive = hardwareMap.dcMotor.get("2drive");
+
+        }
+        catch(Exception e)
+        {
+            warnings.add("Failed to map '2drive'");
+            DbgLog.msg(e.getLocalizedMessage());
+            motor2Drive = null;
         }
 
     }
@@ -168,7 +221,7 @@ public class R2Hardware extends OpMode
     /**
      * Scale the joystick input using a nonlinear algorithm.
      */
-    void set_drive_power (double p_left_power, double p_right_power)
+    void set_drive_power (double p_left_power, double p_right_power, double p_2drive_power)
 
     {
         if (motorDriveLeft != null)
@@ -178,6 +231,10 @@ public class R2Hardware extends OpMode
         if (motorDriveRight != null)
         {
             motorDriveRight.setPower(p_right_power);
+        }
+        if(motor2Drive != null)
+        {
+            motor2Drive.setPower(p_2drive_power);
         }
 
     } // set_drive_power
@@ -522,6 +579,7 @@ public class R2Hardware extends OpMode
     boolean drive_using_encoders
     ( double p_left_power
             , double p_right_power
+            , double p_2drive_power
             , double p_left_count
             , double p_right_count
     )
@@ -540,7 +598,7 @@ public class R2Hardware extends OpMode
         //
         // Start the drive wheel motors at full power.
         //
-        set_drive_power (p_left_power, p_right_power);
+        set_drive_power (p_left_power, p_right_power, p_2drive_power);
 
         //
         // Have the motor shafts turned the required amount?
@@ -558,7 +616,7 @@ public class R2Hardware extends OpMode
             //
             // Stop the motors.
             //
-            set_drive_power (0.0f, 0.0f);
+            set_drive_power (0.0f, 0.0f, 0.0f);
 
             //
             // Transition to the next state when this method is called

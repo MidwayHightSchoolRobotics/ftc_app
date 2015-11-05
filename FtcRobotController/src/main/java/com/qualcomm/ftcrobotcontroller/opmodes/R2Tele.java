@@ -14,11 +14,14 @@ public class R2Tele extends R2Telemetry {
     {
         float leftMotorPower = 0;
         float rightMotorPower = 0;
+        float drive2MotorPower = 0;
 
         if(gamepad1.x)
         {
             leftMotorPower = scale_motor_power(-gamepad1.left_stick_y);
             rightMotorPower = scale_motor_power(-gamepad1.left_stick_y);
+            drive2MotorPower = scale_motor_power(-gamepad1.left_stick_y);
+
         }
         else
         {
@@ -27,7 +30,7 @@ public class R2Tele extends R2Telemetry {
         }
 
 
-        set_drive_power (leftMotorPower, rightMotorPower);
+        set_drive_power (leftMotorPower, rightMotorPower, drive2MotorPower);
     }
 
 }
