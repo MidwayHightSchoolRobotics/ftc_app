@@ -31,6 +31,7 @@ public class R2Telemetry extends R2Hardware {
                 combined = (combined+ ", " + warning);
             }
             telemetry.addData("00",combined);
+            telemetry.addData("01", "Test Message!");
             warnings.clear();
         }
 
