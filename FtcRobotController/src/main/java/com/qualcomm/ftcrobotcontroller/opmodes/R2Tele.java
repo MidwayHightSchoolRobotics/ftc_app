@@ -52,6 +52,12 @@ public class R2Tele extends R2Telemetry {
             updateMotorPower(2, 0);
         }
 
+        if(gamepad2.left_bumper)
+        {
+            leftMotorPower = leftMotorPower/3;
+            rightMotorPower = rightMotorPower/3;
+        }
+
         set_drive_power (leftMotorPower, rightMotorPower);
     }
 
