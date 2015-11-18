@@ -28,11 +28,11 @@ public class R2Tele extends R2Telemetry {
         }
         if(gamepad1.left_bumper)
         {
-            updateMotorPower(1, 0.2f);
+            updateMotorPower(1, 0.1f);
         }
         else if(gamepad1.left_trigger>0.2)
         {
-            updateMotorPower(1, -0.15f);
+            updateMotorPower(1, -0.09f);
         }
         else
         {
