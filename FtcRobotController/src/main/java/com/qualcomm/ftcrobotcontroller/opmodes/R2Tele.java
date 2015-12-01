@@ -10,6 +10,7 @@ public class R2Tele extends R2Telemetry {
 
     }
 
+
     public void loop()
     {
         float leftMotorPower = 0;
@@ -28,11 +29,11 @@ public class R2Tele extends R2Telemetry {
         }
         if(gamepad1.left_bumper)
         {
-            updateMotorPower(1, 0.1f);
+            updateMotorPower(1, 0.43f);
         }
         else if(gamepad1.left_trigger>0.2)
         {
-            updateMotorPower(1, -0.09f);
+            updateMotorPower(1, -0.12f);
         }
         else
         {
@@ -57,6 +58,20 @@ public class R2Tele extends R2Telemetry {
             leftMotorPower = leftMotorPower/3;
             rightMotorPower = rightMotorPower/3;
         }
+
+        if(gamepad2.right_bumper)
+        {
+            updateMotorPower(3, -1f);
+        }
+        else if(gamepad2.right_trigger>0.2)
+        {
+            updateMotorPower(3, 1f);
+        }
+        else
+        {
+            updateMotorPower(3, 0f);
+        }
+
 
         set_drive_power (leftMotorPower, rightMotorPower);
     }

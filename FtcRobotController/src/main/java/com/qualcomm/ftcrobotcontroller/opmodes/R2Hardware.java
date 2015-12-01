@@ -20,7 +20,7 @@ public class R2Hardware extends OpMode
     private DcMotor motorDriveLeft;
     private DcMotor motorDriveRight;
 
-    //private DcMotor motorString;
+    private DcMotor motorString;
     private DcMotor motorLift;
     private DcMotor motorPull;
 
@@ -59,7 +59,7 @@ public class R2Hardware extends OpMode
             motorDriveRight = null;
         }
 
-        /*
+
         try
         {
             motorString = hardwareMap.dcMotor.get("string");
@@ -71,7 +71,7 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
             motorString = null;
         }
-        */
+
         try
         {
             motorLift = hardwareMap.dcMotor.get("lift");
@@ -95,6 +95,8 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
             motorPull = null;
         }
+
+
 
 
 
@@ -124,7 +126,7 @@ public class R2Hardware extends OpMode
                 motorToChange = motorPull;
                 break;
             case(3):
-                motorToChange = null;
+                motorToChange = motorString;
                 break;
             default:
                 motorToChange = null;
