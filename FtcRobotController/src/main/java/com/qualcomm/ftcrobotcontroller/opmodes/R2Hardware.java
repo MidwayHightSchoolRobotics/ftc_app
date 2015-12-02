@@ -4,6 +4,7 @@ import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class R2Hardware extends OpMode
     private DcMotor motorString;
     private DcMotor motorLift;
     private DcMotor motorPull;
+
+    public Servo servoFlip;
 
 
     public R2Hardware()
@@ -94,6 +97,25 @@ public class R2Hardware extends OpMode
             warnings.add("Failed to map 'pull'");
             DbgLog.msg(e.getLocalizedMessage());
             motorPull = null;
+        }
+
+        try
+        {
+            servoFlip = hardwareMap.servo.get("flipper");
+        }
+        catch (Exception e)
+        {
+            warnings.add("Failed to map 'flipper'");
+            DbgLog.msg(e.getLocalizedMessage());
+            servoFlip = null;
+        }
+
+        try {
+            servoFlip.setPosition(0.1);
+        }
+        catch (Exception e)
+        {
+            DbgLog.msg(e.getLocalizedMessage());
         }
 
 
