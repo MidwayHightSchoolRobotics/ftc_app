@@ -53,19 +53,19 @@ public class R2Tele extends R2Telemetry {
             updateMotorPower(2, 0);
         }
 
-        if(gamepad2.left_bumper)
+        if(gamepad2.x)
         {
             leftMotorPower = leftMotorPower/3;
             rightMotorPower = rightMotorPower/3;
         }
 
-        if(gamepad1.left_bumper)
+        if(gamepad2.left_bumper)
         {
-            updateMotorPower(3, -0.6f);
+            updateMotorPower(3, -0.5f);
         }
-        else if(gamepad1.left_trigger>0.2)
+        else if(gamepad2.left_trigger>0.2)
         {
-            updateMotorPower(3, 0.6f);
+            updateMotorPower(3, 0.5f);
         }
         else
         {
@@ -78,7 +78,16 @@ public class R2Tele extends R2Telemetry {
         }
         else if(gamepad2.a)
         {
-            servoFlip.setPosition(0.85);
+            servoFlip.setPosition(0.93);
+        }
+
+        if(gamepad2.dpad_down)
+        {
+            servoGrab.setPosition(0.2);
+        }
+        else if(gamepad2.dpad_up)
+        {
+            servoGrab.setPosition(0.6);
         }
 
 

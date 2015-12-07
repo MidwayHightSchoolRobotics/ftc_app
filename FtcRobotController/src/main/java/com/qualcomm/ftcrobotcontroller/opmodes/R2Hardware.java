@@ -26,6 +26,7 @@ public class R2Hardware extends OpMode
     private DcMotor motorPull;
 
     public Servo servoFlip;
+    public Servo servoGrab;
 
 
     public R2Hardware()
@@ -110,6 +111,17 @@ public class R2Hardware extends OpMode
             servoFlip = null;
         }
 
+        try
+        {
+            servoGrab = hardwareMap.servo.get("grab");
+        }
+        catch(Exception e)
+        {
+            warnings.add("Failed to map 'grab'");
+            DbgLog.msg(e.getLocalizedMessage());
+            servoGrab = null;
+        }
+
         try {
             servoFlip.setPosition(0.1);
         }
@@ -118,6 +130,13 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
         }
 
+        try {
+            servoGrab.setPosition(0.6);
+        }
+        catch (Exception e)
+        {
+            DbgLog.msg(e.getLocalizedMessage());
+        }
 
 
 
