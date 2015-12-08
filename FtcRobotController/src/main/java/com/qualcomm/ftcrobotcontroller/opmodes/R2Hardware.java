@@ -24,9 +24,11 @@ public class R2Hardware extends OpMode
     private DcMotor motorString;
     private DcMotor motorLift;
     private DcMotor motorPull;
+    private DcMotor motorHookPull;
 
     public Servo servoFlip;
     public Servo servoGrab;
+    public Servo servoHook;
 
 
     public R2Hardware()
@@ -102,6 +104,17 @@ public class R2Hardware extends OpMode
 
         try
         {
+            motorHookPull = hardwareMap.dcMotor.get("hookpull");
+        }
+        catch (Exception e)
+        {
+            warnings.add("Failed to map 'pull'");
+            DbgLog.msg(e.getLocalizedMessage());
+            motorHookPull = null;
+        }
+
+        try
+        {
             servoFlip = hardwareMap.servo.get("flipper");
         }
         catch (Exception e)
@@ -113,13 +126,13 @@ public class R2Hardware extends OpMode
 
         try
         {
-            servoGrab = hardwareMap.servo.get("grab");
+            servoHook = hardwareMap.servo.get("hook");
         }
         catch(Exception e)
         {
-            warnings.add("Failed to map 'grab'");
+            warnings.add("Failed to map 'hook'");
             DbgLog.msg(e.getLocalizedMessage());
-            servoGrab = null;
+            servoHook = null;
         }
 
         try {
@@ -130,13 +143,6 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
         }
 
-        try {
-            servoGrab.setPosition(0.6);
-        }
-        catch (Exception e)
-        {
-            DbgLog.msg(e.getLocalizedMessage());
-        }
 
 
 
@@ -169,6 +175,8 @@ public class R2Hardware extends OpMode
             case(3):
                 motorToChange = motorString;
                 break;
+            case(4):
+                motorToChange = motorHookPull;
             default:
                 motorToChange = null;
                 break;

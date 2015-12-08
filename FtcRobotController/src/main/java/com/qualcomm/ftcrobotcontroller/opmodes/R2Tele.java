@@ -80,14 +80,26 @@ public class R2Tele extends R2Telemetry {
         {
             servoFlip.setPosition(0.93);
         }
-
-        if(gamepad2.dpad_down)
+        if(gamepad2.dpad_left)
         {
-            servoGrab.setPosition(0.2);
+            servoHook.setPosition(0.2);
         }
-        else if(gamepad2.dpad_up)
+        else if(gamepad2.dpad_right)
         {
-            servoGrab.setPosition(0.6);
+            servoHook.setPosition(0.8);
+        }
+
+        if(gamepad1.left_bumper)
+        {
+            updateMotorPower(4,1.0f);
+        }
+        else if(gamepad1.left_trigger>0.1)
+        {
+            updateMotorPower(4,-1.0f);
+        }
+        else
+        {
+            updateMotorPower(4,0f);
         }
 
 
