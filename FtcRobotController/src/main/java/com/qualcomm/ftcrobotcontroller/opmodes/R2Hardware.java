@@ -16,7 +16,7 @@ public class R2Hardware extends OpMode
 {
 
 
-    public ArrayList<String> warnings;
+    public ArrayList<String> warnings = new ArrayList<String>(20);
 
     private DcMotor motorDriveLeft;
     private DcMotor motorDriveRight;
@@ -177,6 +177,7 @@ public class R2Hardware extends OpMode
                 break;
             case(4):
                 motorToChange = motorHookPull;
+                break;
             default:
                 motorToChange = null;
                 break;
