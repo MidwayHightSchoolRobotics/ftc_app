@@ -30,6 +30,8 @@ public class R2Hardware extends OpMode
     public Servo servoGrab;
     public Servo servoHook;
 
+    public Servo servoMen;
+
 
     public R2Hardware()
     {
@@ -135,8 +137,28 @@ public class R2Hardware extends OpMode
             servoHook = null;
         }
 
+        try
+        {
+            servoMen = hardwareMap.servo.get("men");
+        }
+        catch (Exception e)
+        {
+            warnings.add("failed to map 'men'");
+            DbgLog.msg(e.getLocalizedMessage());
+            servoMen = null;
+        }
+
         try {
             servoFlip.setPosition(0.1);
+        }
+        catch (Exception e)
+        {
+            DbgLog.msg(e.getLocalizedMessage());
+        }
+
+        try {
+
+            servoMen.setPosition(0.66);
         }
         catch (Exception e)
         {
