@@ -32,6 +32,8 @@ public class R2Hardware extends OpMode
 
     public Servo servoMen;
 
+    public Servo servoString;
+
 
     public R2Hardware()
     {
@@ -147,6 +149,16 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
             servoMen = null;
         }
+        try
+        {
+            servoString = hardwareMap.servo.get("shook");
+        }
+        catch (Exception e)
+        {
+            warnings.add("failed to map 'shook'");
+            DbgLog.msg(e.getLocalizedMessage());
+            servoString = null;
+        }
 
         try {
             servoFlip.setPosition(0.1);
@@ -159,6 +171,14 @@ public class R2Hardware extends OpMode
         try {
 
             servoMen.setPosition(0.66);
+        }
+        catch (Exception e)
+        {
+            DbgLog.msg(e.getLocalizedMessage());
+        }
+
+        try {
+            servoString.setPosition(1);
         }
         catch (Exception e)
         {
