@@ -1,11 +1,13 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import java.util.Objects;
 
 /**
  * Created by BraxtonL_Williams on 1/4/2016.
  */
-public class R2AutoPrimary extends R2Telemetry{
+public class R2AutoPrimary extends LinearOpMode {
 
     public R2AutoPrimary ()
 
@@ -22,36 +24,13 @@ public class R2AutoPrimary extends R2Telemetry{
 
     } // PushBotAuto
 
-
-    @Override public void start ()
-
+    @Override
+    public void runOpMode()
     {
-        //
-        // Call the PushBotHardware (super/base class) start method.
-        //
-        super.start ();
-
-        //
-        // Reset the motor encoders on the drive wheels.
-        //
-
-    } // start
-
-    @Override public void loop ()
-
-    {
-       if(this.time <=2)
-       {
-           set_drive_power(1.0f,1.0f);
-       }
-        else
-       {
-           set_drive_power(0,0);
-       }
-
-
 
     }
+
+
 
 
 }

@@ -27,12 +27,12 @@ public class R2Hardware extends OpMode
     private DcMotor motorHookPull;
 
     public Servo servoFlip;
-    public Servo servoGrab;
     public Servo servoHook;
 
     public Servo servoMen;
 
-    public Servo servoString;
+    public Servo servoLock;
+
 
 
     public R2Hardware()
@@ -149,15 +149,16 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
             servoMen = null;
         }
+
         try
         {
-            servoString = hardwareMap.servo.get("shook");
+            servoLock = hardwareMap.servo.get("lock");
         }
         catch (Exception e)
         {
-            warnings.add("failed to map 'shook'");
+            warnings.add("failed to map 'lock'");
             DbgLog.msg(e.getLocalizedMessage());
-            servoString = null;
+            servoLock = null;
         }
 
         try {
@@ -170,7 +171,7 @@ public class R2Hardware extends OpMode
 
         try {
 
-            servoMen.setPosition(0.66);
+            servoMen.setPosition(0.95);
         }
         catch (Exception e)
         {
@@ -178,12 +179,15 @@ public class R2Hardware extends OpMode
         }
 
         try {
-            servoString.setPosition(1);
+
+            servoLock.setPosition(0);
         }
         catch (Exception e)
         {
             DbgLog.msg(e.getLocalizedMessage());
         }
+
+
 
 
 

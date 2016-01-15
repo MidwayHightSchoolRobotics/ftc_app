@@ -31,7 +31,7 @@ public class R2Tele extends R2Telemetry {
         {
             updateMotorPower(1, -0.5f);
         }
-        else if(gamepad2.right_trigger>0.2)
+        else if(gamepad2.right_trigger>0.7f)
         {
             updateMotorPower(1, 0.12f);
         }
@@ -43,11 +43,11 @@ public class R2Tele extends R2Telemetry {
 
         if(gamepad1.right_bumper)
         {
-            updateMotorPower(2, 1f);
-        }
-        else if(gamepad1.right_trigger>0.3)
-        {
             updateMotorPower(2, -1f);
+        }
+        else if(gamepad1.right_trigger>0.7f)
+        {
+            updateMotorPower(2, 1f);
         }
         else
         {
@@ -65,7 +65,7 @@ public class R2Tele extends R2Telemetry {
         {
             updateMotorPower(3, 0.6f);
         }
-        else if(gamepad2.left_trigger>0.2)
+        else if(gamepad2.left_trigger>0.7f)
         {
             updateMotorPower(3, -0.6f);
         }
@@ -95,7 +95,7 @@ public class R2Tele extends R2Telemetry {
         {
             updateMotorPower(4,-1.0f);
         }
-        else if(gamepad1.left_trigger>0.1)
+        else if(gamepad1.left_trigger>0.7f)
         {
             updateMotorPower(4,1.0f);
         }
@@ -106,21 +106,22 @@ public class R2Tele extends R2Telemetry {
 
         if(gamepad2.dpad_down)
         {
-            servoMen.setPosition(0.33);
+            servoMen.setPosition(0.95);
         }
         else if(gamepad2.dpad_up)
         {
-            servoMen.setPosition(1);
+            servoMen.setPosition(0);
         }
 
-        if(gamepad2.dpad_left)
+        if(gamepad1.b)
         {
-            servoString.setPosition(1);
+            servoLock.setPosition(0);
         }
-        else if(gamepad2.dpad_right)
+        else if(gamepad1.y)
         {
-            servoString.setPosition(0.9);
+            servoLock.setPosition(0.5);
         }
+
 
 
         set_drive_power (leftMotorPower, rightMotorPower);
