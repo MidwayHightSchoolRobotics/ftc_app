@@ -3,15 +3,15 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by BraxtonL_Williams on 1/4/2016.
  */
-public class R2AutoPrimary extends LinearOpMode {
+public class R2AutoLeftShort extends LinearOpMode {
     private DcMotor motorDriveLeft;
     private DcMotor motorDriveRight;
 
@@ -21,11 +21,13 @@ public class R2AutoPrimary extends LinearOpMode {
 
     public Servo servoLock;
 
+    public LightSensor lightSensor;
+
     public ArrayList<String> warnings = new ArrayList<String>(20);
 
 
 
-    public R2AutoPrimary ()
+    public R2AutoLeftShort()
 
     {
         //
@@ -100,6 +102,17 @@ public class R2AutoPrimary extends LinearOpMode {
             DbgLog.msg(e.getLocalizedMessage());
             servoLock = null;
         }
+        try
+        {
+            lightSensor = hardwareMap.lightSensor.get("light");
+        }
+        catch (Exception e)
+        {
+            warnings.add("failed to map 'light'");
+            DbgLog.msg(e.getLocalizedMessage());
+            lightSensor = null;
+        }
+        lightSensor.enableLed(true);
 
         try {
 
@@ -124,10 +137,32 @@ public class R2AutoPrimary extends LinearOpMode {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        set_drive_power(1.0,1.0);
+        try {
+            sleep(4400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        set_drive_power(0,0);
 
 
+        /*
+        set_drive_power(0,0);
 
-        servoMen.setPosition(0);
+        set_drive_power(0.3,0.6);
+        while(lightSensor.getLightDetected()>0.6)
+        {
+
+        }
+
+        set_drive_power(0.6,0.3);
+        while(lightSensor.getLightDetected()>0.6)
+        {
+
+        }
+        set_drive_power(0,0);
+        */
+        servoMen.setPosition(0.9);
 
 
 

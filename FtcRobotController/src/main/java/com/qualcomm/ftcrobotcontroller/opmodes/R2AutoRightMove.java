@@ -6,12 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by BraxtonL_Williams on 1/4/2016.
  */
-public class R2AutoPrimary extends LinearOpMode {
+public class R2AutoRightMove extends LinearOpMode {
     private DcMotor motorDriveLeft;
     private DcMotor motorDriveRight;
 
@@ -25,7 +24,7 @@ public class R2AutoPrimary extends LinearOpMode {
 
 
 
-    public R2AutoPrimary ()
+    public R2AutoRightMove()
 
     {
         //
@@ -124,10 +123,55 @@ public class R2AutoPrimary extends LinearOpMode {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        set_drive_power(1.0,1.0);
+        try {
+            sleep(4300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        set_drive_power(0,0);
+        set_drive_power(-0.2,0.8);
 
+        try {
+            sleep(2200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        set_drive_power(-0.5,-0.5);
 
-        servoMen.setPosition(0);
+        try {
+            sleep(1240);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        servoMen.setPosition(0.9);
+        set_drive_power(1,1);
+
+        try {
+            sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        set_drive_power(0,0);
+
+        /*
+        set_drive_power(0,0);
+
+        set_drive_power(0.3,0.6);
+        while(lightSensor.getLightDetected()>0.6)
+        {
+
+        }
+
+        set_drive_power(0.6,0.3);
+        while(lightSensor.getLightDetected()>0.6)
+        {
+
+        }
+        set_drive_power(0,0);
+        */
+
 
 
 

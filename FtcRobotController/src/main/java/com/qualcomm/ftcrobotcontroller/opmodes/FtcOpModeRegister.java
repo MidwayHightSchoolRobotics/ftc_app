@@ -59,7 +59,17 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     manager.register("R2Tele", R2Tele.class);
 
-    manager.register("R2 Auto Close", R2AutoPrimary.class);
+    manager.register("R2 Auto Left", R2AutoLeft.class);
+
+    manager.register("R2 Auto Right", R2AutoRight.class);
+
+    manager.register("R2 Auto Left Short", R2AutoLeftShort.class);
+
+    manager.register("R2 Auto Right Short", R2AutoRightShort.class);
+
+    manager.register("R2 Auto Left Move", R2AutoLeftMove.class);
+
+    manager.register("R2 Auto Right Move", R2AutoRightMove.class);
 
     //manager.register("MatrixK9TeleOp", MatrixK9TeleOp.class);
     //manager.register("K9TeleOp", K9TeleOp.class);

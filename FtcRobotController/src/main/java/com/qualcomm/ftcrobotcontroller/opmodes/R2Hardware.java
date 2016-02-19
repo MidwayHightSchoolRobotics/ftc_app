@@ -33,6 +33,8 @@ public class R2Hardware extends OpMode
 
     public Servo servoLock;
 
+    public Servo servoClimb;
+
 
 
     public R2Hardware()
@@ -43,7 +45,6 @@ public class R2Hardware extends OpMode
     @Override
     public void init()
     {
-
         try
         {
             motorDriveLeft = hardwareMap.dcMotor.get("driveLeft");
@@ -117,6 +118,7 @@ public class R2Hardware extends OpMode
             motorHookPull = null;
         }
 
+
         try
         {
             servoFlip = hardwareMap.servo.get("flipper");
@@ -127,6 +129,7 @@ public class R2Hardware extends OpMode
             DbgLog.msg(e.getLocalizedMessage());
             servoFlip = null;
         }
+
 
         try
         {
@@ -161,13 +164,26 @@ public class R2Hardware extends OpMode
             servoLock = null;
         }
 
+        try
+        {
+            servoClimb = hardwareMap.servo.get("climb");
+        }
+        catch (Exception e)
+        {
+            warnings.add("failed to map 'climb'");
+            DbgLog.msg(e.getLocalizedMessage());
+            servoClimb = null;
+        }
+
+
         try {
-            servoFlip.setPosition(0.1);
+            servoFlip.setPosition(0.0);
         }
         catch (Exception e)
         {
             DbgLog.msg(e.getLocalizedMessage());
         }
+
 
         try {
 
@@ -181,6 +197,15 @@ public class R2Hardware extends OpMode
         try {
 
             servoLock.setPosition(0);
+        }
+        catch (Exception e)
+        {
+            DbgLog.msg(e.getLocalizedMessage());
+        }
+
+        try {
+
+            servoClimb.setPosition(0.4f);
         }
         catch (Exception e)
         {
